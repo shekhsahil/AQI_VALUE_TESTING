@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AQI Readings</title>
+  </head>
+  <style>
+    body {
+      background-color: black;
+    }
+    label,
+    h1,
+    .data-head {
+      color: aliceblue;
+    }
+    p {
+      color: green;
+    }
+    .container{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+  </style>
+  <body>
+    <center>
+      <div class="data-head">AQI VALUES TESTING</div>
+    </center>
+    <div class="container">
+      <div class="L1">
+        <!-- FOR LOCATION 1 START  -->
+        <h1>Location 1</h1>
+        <label for=""> heat 1 avg</label>
+        <p id="L1_heatI_avg">0</p>
+        <label for=""> hum avg</label>
+        <p id="L1_hum_avg">0</p>
+
+        <label for=""> MQ4_avg</label>
+        <p id="L1_MQ4_avg">0</p>
+
+        <label for=""> MQ135_avg</label>
+        <p id="L1_ MQ135_avg">0</p>
+
+        <label for=""> MQ7_avg </label>
+        <p id="L1_ MQ7_avg">0</p>
+
+        <label for=""> MQ9_avg </label>
+        <p id="L1_ MQ9_avg">0</p>
+
+        <label for=""> PM_avg </label>
+        <p id="L1_ PM_avg">0</p>
+
+        <label for=""> Temp_avg </label>
+        <p id="L1_ temp_avg">0</p>
+      </div>
+      <!-- FOR LOCATION 2 START  -->
+      <div class="L2">
+        <h1>Location 2</h1>
+        <label for=""> heat 1 avg</label>
+        <p id="L2_heatI_avg">0</p>
+        <label for=""> hum avg</label>
+        <p id="L2_hum_avg">0</p>
+
+        <label for=""> MQ4_avg</label>
+        <p id="L2_MQ4_avg">0</p>
+
+        <label for=""> MQ135_avg</label>
+        <p id="L2_ MQ135_avg">0</p>
+
+        <label for=""> MQ7_avg </label>
+        <p id="L2_ MQ7_avg">0</p>
+
+        <label for=""> MQ9_avg </label>
+        <p id="L2_ MQ9_avg">0</p>
+
+        <label for=""> PM_avg </label>
+        <p id="L2_ PM_avg">0</p>
+
+        <label for=""> Temp_avg </label>
+        <p id="L2_ temp_avg">0</p>
+      </div>
+    </div>
+    <!-- the scripts for products you want to access must be added-->
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+      // Your web app's Firebase configuration here (Do not use the existing configuration)
+      const firebaseConfig = {
+        apiKey: "AIzaSyBZt5PhfSamb2cDjyayhoa05w0VZdNZvlQ",
+        authDomain: "aqidatabase.firebaseapp.com",
+        databaseURL:
+          "https://aqidatabase-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "aqidatabase",
+        storageBucket: "aqidatabase.appspot.com",
+        messagingSenderId: "708628159834",
+        appId: "1:708628159834:web:075f4dfe45e332266ea763",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // getting reference to the database
+      var database = firebase.database();
+
+      //getting reference to the data we want
+      var dataRef1 = database.ref("/Location 1/HeatI_avg");
+      var dataRef2 = database.ref("/Location 1/Hum_avg");
+      var dataRef3 = database.ref("/Location 1/MQ4_avg");
+      var dataRef4 = database.ref("/Location 1/MQ135_avg");
+      var dataRef5 = database.ref("/Location 1/MQ7_avg");
+      var dataRef6 = database.ref("/Location 1/MQ9_avg");
+      var dataRef7 = database.ref("/Location 1/PM_avg");
+      var dataRef8 = database.ref("/Location 1/Temp_avg");
+
+      var dataRef9 = database.ref("/Location 2/HeatI_avg");
+      var dataRef10 = database.ref("/Location 2/Hum_avg");
+      var dataRef11 = database.ref("/Location 2/MQ4_avg");
+      var dataRef12 = database.ref("/Location 2/MQ135_avg");
+      var dataRef13 = database.ref("/Location 2/MQ7_avg");
+      var dataRef14 = database.ref("/Location 2/MQ9_avg");
+      var dataRef15 = database.ref("/Location 2/PM_avg");
+      var dataRef16 = database.ref("/Location 2/Temp_avg");
+      //fetch the data
+      dataRef1.on("value", function (getdata1) {
+        var data1 = getdata1.val();
+        document.getElementById("L1_heatI_avg").innerHTML = data1;
+      });
+
+      dataRef2.on("value", function (getdata2) {
+        var data2 = getdata2.val();
+        document.getElementById("L1_hum_avg").innerHTML = data2;
+      });
+
+      dataRef3.on("value", function (getdata3) {
+        var data3 = getdata3.val();
+        document.getElementById("L1_MQ4_avg").innerHTML = data3;
+      });
+
+      dataRef4.on("value", function (getdata4) {
+        var data4 = getdata4.val();
+        document.getElementById("L1_ MQ135_avg").innerHTML = data4;
+      });
+
+      dataRef5.on("value", function (getdata5) {
+        var data5 = getdata5.val();
+        document.getElementById("L1_ MQ7_avg").innerHTML = data5;
+      });
+
+      dataRef6.on("value", function (getdata6) {
+        var data6 = getdata6.val();
+        document.getElementById("L1_ MQ9_avg").innerHTML = data6;
+      });
+
+      dataRef7.on("value", function (getdata7) {
+        var data7 = getdata7.val();
+        document.getElementById("L1_ PM_avg").innerHTML = data7;
+      });
+
+      dataRef8.on("value", function (getdata8) {
+        var data8 = getdata8.val();
+        document.getElementById("L1_ temp_avg").innerHTML = data8;
+      });
+
+      // FOR LOCATION 2 START HERE
+      dataRef9.on("value", function (getdata9) {
+        var data9 = getdata9.val();
+        document.getElementById("L2_heatI_avg").innerHTML = data9;
+      });
+
+      dataRef10.on("value", function (getdata10) {
+        var data10 = getdata10.val();
+        document.getElementById("L2_hum_avg").innerHTML = data10;
+      });
+
+      dataRef11.on("value", function (getdata11) {
+        var data11 = getdata11.val();
+        document.getElementById("L2_MQ4_avg").innerHTML = data11;
+      });
+
+      dataRef12.on("value", function (getdata12) {
+        var data12 = getdata12.val();
+        document.getElementById("L2_ MQ135_avg").innerHTML = data12;
+      });
+
+      dataRef13.on("value", function (getdata13) {
+        var data13 = getdata13.val();
+        document.getElementById("L2_ MQ7_avg").innerHTML = data13;
+      });
+
+      dataRef14.on("value", function (getdata14) {
+        var data14 = getdata14.val();
+        document.getElementById("L2_ MQ9_avg").innerHTML = data14;
+      });
+
+      dataRef15.on("value", function (getdata15) {
+        var data15 = getdata15.val();
+        document.getElementById("L2_ PM_avg").innerHTML = data15;
+      });
+
+      dataRef16.on("value", function (getdata16) {
+        var data16 = getdata16.val();
+        document.getElementById("L2_ temp_avg").innerHTML = data16;
+      });
+    </script>
+  </body>
+</html>
